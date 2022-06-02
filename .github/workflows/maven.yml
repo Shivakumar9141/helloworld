@@ -22,12 +22,17 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
+    - name: SonarQube Scan
+      uses: kitabisa/sonarqube-action@v1.1.0
+      with:
+        host: ${{ secrets.SONARQUBE_HOST }}
+        login: ${{ secrets.SONARQUBE_TOKEN }}
     - name: Build with Maven
       run: mvn clean install
     - name: Build & push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        image: test
+        image: test1
         tags: latest
         registry: hidpdeveastusbotacr.azurecr.io
         dockerfile: Dockerfile
