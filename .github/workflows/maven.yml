@@ -26,7 +26,7 @@ jobs:
       run: mvn clean install -DskipTests=True
     - name: sonar
       run: |
-        mvn clean verify sonar:sonar -Dsonar.projectKey=test123 -Dsonar.host.url=http://20.115.91.217:9000 -Dsonar.login=66e3aa607c2274a151cd7bd6ce3f3048a2b2a639
+        mvn clean verify sonar:sonar -Dsonar.projectKey=test123 -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} -Dsonar.login=${{ secrets.SONAR_TOKEN }}
     - name: Build & push Docker imag
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
